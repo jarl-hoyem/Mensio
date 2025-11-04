@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report>
+  <Version AppName="3mensio Structural Heart" AppMajor="10.7" AppMinor="6382.24">10.7.6382.24</Version>
+  <Models>
+    <StudyInfo>
+      <StudyDescription>CTA thorakalen Aorta</StudyDescription>
+      <StudyId>4567890</StudyId>
+      <StudyDate>01.10.2019 14:40</StudyDate>
+      <AccessionNumber>Anon0045678901</AccessionNumber>
+      <ReferringPhysician>‏Anon‎</ReferringPhysician>
+      <PatientName>Nachname5, Vorname5‎</PatientName>
+      <PatientId>0087980930</PatientId>
+      <PatientSex>Male</PatientSex>
+      <PatientWeight>70</PatientWeight>
+      <PatientHeight>1.70</PatientHeight>
+      <PatientBirthDate>06.01.2000</PatientBirthDate>
+      <SliceThickness>0.6</SliceThickness>
+    </StudyInfo>
+    <PatientInformation>
+      <Fields>
+        <PatientName Type="String">‏Nachname5, Vorname5</PatientName>
+        <PatientSex Type="String">Male</PatientSex>
+        <PatientYearOfBirth Type="String">2000 (25)</PatientYearOfBirth>
+        <PatientHeight Type="String">1.70</PatientHeight>
+        <BMI Type="String">24.2</BMI>
+        <PatientWeight Type="String">70</PatientWeight>
+      </Fields>
+      <ReportOptions />
+    </PatientInformation>
+    <AorticValve>
+      <Fields>
+        <ShowAgatstonTable Type="Boolean">true</ShowAgatstonTable>
+        <ShowCalciumVolumeTable Type="Boolean">true</ShowCalciumVolumeTable>
+      </Fields>
+      <ReportOptions />
+    </AorticValve>
+    <AorticValveInValve>
+      <Fields>
+        <IndexValve Type="String">-</IndexValve>
+        <IndexValveCustom Type="String"></IndexValveCustom>
+        <MainValve Type="String">-</MainValve>
+        <MainValveCustom Type="String"></MainValveCustom>
+        <LeftCoronaryLevel Type="String">-</LeftCoronaryLevel>
+        <LeftCoronaryLevelCustom Type="String"></LeftCoronaryLevelCustom>
+        <RightCoronaryLevel Type="String">-</RightCoronaryLevel>
+        <RightCoronaryLevelCustom Type="String"></RightCoronaryLevelCustom>
+        <CoronaryRiskPlane Type="String">-</CoronaryRiskPlane>
+        <CoronaryRiskPlaneCustom Type="String"></CoronaryRiskPlaneCustom>
+        <NeoSkirtPlane Type="String">-</NeoSkirtPlane>
+        <NeoSkirtPlaneCustom Type="String"></NeoSkirtPlaneCustom>
+      </Fields>
+      <ReportOptions />
+      <IndexValveDiameter Id="IndexValveDiameter0" Label="" Selected="None" />
+      <IndexValveDiameter Id="IndexValveDiameter1" Label="" Selected="None" />
+      <IndexValveDiameter Id="IndexValveDiameter2" Label="" Selected="None" />
+      <IndexValveDiameter Id="IndexValveDiameter3" Label="" Selected="None" />
+      <IndexValveDiameter Id="IndexValveDiameter4" Label="" Selected="None" />
+      <IndexValveDiameter Id="IndexValveDiameter5" Label="" Selected="None" />
+      <IndexValveDiameter Id="IndexValveDiameter6" Label="" Selected="None" />
+      <IndexValveDiameter Id="IndexValveDiameter7" Label="" Selected="None" />
+      <CoronaryAssessment Id="LeftCoronaryAssessment0" Label="" />
+      <CoronaryAssessment Id="LeftCoronaryAssessment1" Label="" />
+      <CoronaryAssessment Id="LeftCoronaryAssessment2" Label="" />
+      <CoronaryAssessment Id="LeftCoronaryAssessment3" Label="" />
+      <CoronaryAssessment Id="LeftCoronaryAssessment4" Label="" />
+      <CoronaryAssessment Id="LeftCoronaryAssessment5" Label="" />
+      <CoronaryAssessment Id="RightCoronaryAssessment0" Label="" />
+      <CoronaryAssessment Id="RightCoronaryAssessment1" Label="" />
+      <CoronaryAssessment Id="RightCoronaryAssessment2" Label="" />
+      <CoronaryAssessment Id="RightCoronaryAssessment3" Label="" />
+      <CoronaryAssessment Id="RightCoronaryAssessment4" Label="" />
+      <CoronaryAssessment Id="RightCoronaryAssessment5" Label="" />
+    </AorticValveInValve>
+    <Femoral>
+      <Fields />
+      <ReportOptions />
+    </Femoral>
+    <Subclavian>
+      <Fields />
+      <ReportOptions />
+    </Subclavian>
+    <Carotids>
+      <Fields />
+      <ReportOptions />
+    </Carotids>
+  </Models>
+  <Sections>
+    <ReportDetails IsVisible="true">
+      <Fields>
+        <Physician Type="String">‏Anon‎</Physician>
+      </Fields>
+    </ReportDetails>
+  </Sections>
+  <Measurements>
+    <Measurement Id="AscendingAortaDiameterMin" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Ascending Aorta Diameter - Min. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MinDiameter" Label="Min. Ø" Prefix="" Value="30.024591" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AscendingAortaDiameterMax" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Ascending Aorta Diameter - Max. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MaxDiameter" Label="Max. Ø" Prefix="" Value="34.339935" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AscendingAortaDiameterAvg" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Ascending Aorta Diameter - Avg. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="AvgDiameter" Label="Avg. Ø" Prefix="" Value="32.182262" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AscendingAortaDiameterPhase" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Ascending Aorta Diameter - Phase" IsCustom="false">
+      <ReportableValue Type="String" Id="Phase" Label="Phase" Prefix="" Value="95,0%" Unit="NoneOrNotApplicable" Denominator="Empty" />
+    </Measurement>
+    <Measurement Id="SinotubularJunctionDiameterMin" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Sinotubular Junction Diameter - Min. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MinDiameter" Label="Min. Ø" Prefix="" Value="26.69699" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="SinotubularJunctionDiameterMax" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Sinotubular Junction Diameter - Max. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MaxDiameter" Label="Max. Ø" Prefix="" Value="28.538673" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="SinotubularJunctionDiameterAvg" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Sinotubular Junction Diameter - Avg. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="AvgDiameter" Label="Avg. Ø" Prefix="" Value="27.617832" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="SinotubularJunctionDiameterPhase" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Sinotubular Junction Diameter - Phase" IsCustom="false">
+      <ReportableValue Type="String" Id="Phase" Label="Phase" Prefix="" Value="95,0%" Unit="NoneOrNotApplicable" Denominator="Empty" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsMinDiameter" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Min. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MinDiameter" Label="Min. Ø" Prefix="" Value="19.545847" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsMaxDiameter" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Max. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MaxDiameter" Label="Max. Ø" Prefix="" Value="28.443333" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsAvgDiameter" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Avg. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="AvgDiameter" Label="Avg. Ø" Prefix="" Value="23.99459" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsAreaDiameter" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Area derived Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="AreaDiameter" Label="Area derived Ø" Prefix="" Value="23.5165" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsPerimeterDiameter" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Perimeter derived Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="PerimeterDiameter" Label="Perimeter derived Ø" Prefix="" Value="24.521498" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsArea" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Area" IsCustom="false">
+      <ReportableValue Type="Float" Id="Area" Label="Area" Prefix="" Value="434.34543" Unit="MillimeterSquare" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsPerimeter" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Perimeter" IsCustom="false">
+      <ReportableValue Type="Float" Id="Perimeter" Label="Perimeter" Prefix="" Value="77.03656" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsEccentricity" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Eccentricity" IsCustom="false">
+      <ReportableValue Type="Float" Id="Eccentricity" Label="Eccentricity" Prefix="" Value="0.31281447" Unit="Empty" Denominator="Empty" Precision="2" />
+    </Measurement>
+    <Measurement Id="AnnulusDimensionsPhase" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Annulus Dimensions - Phase" IsCustom="false">
+      <ReportableValue Type="String" Id="Phase" Label="Phase" Prefix="" Value="95,0%" Unit="NoneOrNotApplicable" Denominator="Empty" />
+    </Measurement>
+    <Measurement Id="LVOTDiameterMin" ReportId="AorticValve" Workflow="ValveAnalysis" Label="LVOT Diameter - Min. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MinDiameter" Label="Min. Ø" Prefix="" Value="18.973856" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="LVOTDiameterMax" ReportId="AorticValve" Workflow="ValveAnalysis" Label="LVOT Diameter - Max. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="MaxDiameter" Label="Max. Ø" Prefix="" Value="29.799644" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="LVOTDiameterAvg" ReportId="AorticValve" Workflow="ValveAnalysis" Label="LVOT Diameter - Avg. Ø" IsCustom="false">
+      <ReportableValue Type="Float" Id="AvgDiameter" Label="Avg. Ø" Prefix="" Value="24.38675" Unit="Millimeter" Denominator="Empty" Precision="1" />
+    </Measurement>
+    <Measurement Id="LVOTDiameterPhase" ReportId="AorticValve" Workflow="ValveAnalysis" Label="LVOT Diameter - Phase" IsCustom="false">
+      <ReportableValue Type="String" Id="Phase" Label="Phase" Prefix="" Value="95,0%" Unit="NoneOrNotApplicable" Denominator="Empty" />
+    </Measurement>
+    <Measurement Id="CalciumQuantificationDataVolume" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Calcium Volume - Volume" IsCustom="false">
+      <ReportableValue Type="Float" Id="VolumeMm3" Label="" Prefix="" Value="1316.1527" Unit="MillimeterQubic" Denominator="Empty" Precision="0" />
+    </Measurement>
+    <Measurement Id="CalciumQuantificationDataPhase" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Calcium Volume - Phase" IsCustom="false">
+      <ReportableValue Type="String" Id="Phase" Label="Phase" Prefix="" Value="95,0%" Unit="NoneOrNotApplicable" Denominator="Empty" />
+    </Measurement>
+    <Measurement Id="CalciumQuantificationDataNcVolume" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Calcium Volume - NC Volume" IsCustom="false">
+      <ReportableValue Type="Float" Id="NcVolumeMm3" Label="" Prefix="" Value="479.9139" Unit="MillimeterQubic" Denominator="Empty" Precision="0" />
+    </Measurement>
+    <Measurement Id="CalciumQuantificationDataRcVolume" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Calcium Volume - RC Volume" IsCustom="false">
+      <ReportableValue Type="Float" Id="RcVolumeMm3" Label="" Prefix="" Value="351.30133" Unit="MillimeterQubic" Denominator="Empty" Precision="0" />
+    </Measurement>
+    <Measurement Id="CalciumQuantificationDataLcVolume" ReportId="AorticValve" Workflow="ValveAnalysis" Label="Calcium Volume - LC Volume" IsCustom="false">
+      <ReportableValue Type="Float" Id="LcVolumeMm3" Label="" Prefix="" Value="484.93738" Unit="MillimeterQubic" Denominator="Empty" Precision="0" />
+    </Measurement>
+  </Measurements>
+  <Custom>
+    <Measurements />
+    <ReportOptions />
+  </Custom>
+  <CustomFields />
+</Report>

@@ -1,0 +1,4 @@
+openpyxl
+beautifulsoup4
+lxml
+pyyaml

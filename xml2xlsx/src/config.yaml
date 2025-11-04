@@ -1,0 +1,46 @@
+# This file can be used to change inputs to the XML to Excel program.
+
+# Excel path relative to main.py.
+excel_path: ../data/2025-09_24_Patient_Measurements_VX.xlsx
+sheet_title: tavi_mock_1000_with_G  # Name of tab to write in.
+xml_directory: ../data/Datenaus3Mensio/  # Path to the directory with XML files relative to main.py.
+
+# The mapping of Excel column numbers to XML tags.
+mapping:
+  2: PatientId
+  4: PatientName
+  5: PatientBirthDate
+  7: AnnulusDimensionsPhase
+  8: AnnulusDimensionsMinDiameter
+  9: AnnulusDimensionsMaxDiameter
+  10: AnnulusDimensionsAvgDiameter
+  11: AnnulusDimensionsArea
+  12: AnnulusDimensionsPerimeter
+  17: SinotubularJunctionDiameterAvg
+  18: LVOTDiameterAvg
+  19: AscendingAortaDiameterAvg
+  21: CalciumQuantificationDataVolume
+  22: CalciumQuantificationDataNcVolume
+  23: CalciumQuantificationDataRcVolume
+  24: CalciumQuantificationDataLcVolume
+  31: CalciumQuantificationDataNonContrastAgatstonScore
+
+# The Excel headings for the columns above in the mapping
+excel_headings:
+  - Intellispace (KARD_PATIENT.IDENTNA)
+  - Name
+  - Geburt
+  - RRinterval
+  - AnulusDiameterMIN
+  - AnulusDiameterMAX
+  - AnulusDiameterMEAN
+  - AnulusArea
+  - AnulusPerimeter
+  - STJDiameterMEAN
+  - LVOTDiameterMEAN
+  - BulbusDiameterMEAN
+  - CalcVol_NURKlappe
+  - CalcVol_NURKlappe_NC
+  - CalcVol_NURKlappe_RC
+  - CalcVol_NURKlappe_LC
+  - AgatsonNURKlappeAU
