@@ -5,7 +5,7 @@ from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import PatternFill
 
 from .xml_reader import XMLReader
-from src.modules.config import ConfigData
+from .config import ConfigData
 
 
 def is_number(s: str) -> bool:
