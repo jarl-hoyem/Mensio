@@ -5,6 +5,7 @@ from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import PatternFill
 
 from .xml_reader import XMLReader
+from src.modules.config import ConfigData
 
 
 def is_number(s: str) -> bool:
@@ -32,7 +33,7 @@ class ExcelWriter:
     FLOAT_COLUMNS: set[int] = {8, 9, 10, 11, 12, 17, 18, 19}
     INTEGER_COLUMNS: set[int] = {21, 22, 23, 24, 31}
 
-    def __init__(self, config_data: dict[str, str | dict[int, str] | list[str]]) -> None:
+    def __init__(self, config_data: ConfigData) -> None:
         """Initialize the object.
 
         :param: config_data: Dictionary with configuration data.
