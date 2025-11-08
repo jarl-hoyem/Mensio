@@ -8,10 +8,16 @@ version = "1.0.0"
 description = "Convert XML to Excel"
 
 [tool.setuptools]
-packages = ["src"]
+packages = ["mensio"]
 
 [tool.setuptools.package-data]
-src = ["config.yaml"]
+mensio = ["config.yaml"]
+
+[tool.mypy]
+mypy_path = "mensio"
+explicit_package_bases = true
+strict = true
+exclude = ["test"]
 
 [tool.pytest.ini_options]
 testpaths = ["test"]

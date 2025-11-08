@@ -1,15 +1,18 @@
-"""Utilities for working with config.yaml file."""
+"""Utilities for working with the config.yaml file."""
 
 import os
 import glob
 from pathlib import Path
 from typing import TypedDict, cast
-from yaml import safe_load
 from importlib.resources import files
+from yaml import safe_load
+
+REPO_ROOT = Path(__file__).parent.parent
+CONFIG_FILE = REPO_ROOT / "config.yaml"
 
 
 class ConfigData(TypedDict):
-    """Type definition for config.yaml structure."""
+    """Type definition for the configuration yaml structure."""
 
     excel_path: str
     xml_directory: str
@@ -34,9 +37,8 @@ def check_config_data() -> ConfigData:
 
     :return: The prepared config data.
     """
-    config_file = files("src").joinpath("config.yaml")
     try:
-        config_raw = safe_load(config_file.read_text())
+        config_raw = safe_load(CONFIG_FILE.read_text())
     except FileNotFoundError as e:
         print("ERROR: No config.yaml file found. Stopping without any action taken.")
         raise SystemExit from e
@@ -48,7 +50,7 @@ def check_config_data() -> ConfigData:
         raise KeyError(f"ERROR: Missing required keys in config.yaml: {'. '.join(missing_keys)}")
 
     # Resolve paths to absolute.
-    config_dir = Path(str(files("src"))).resolve()
+    config_dir = Path(str(files("mensio"))).resolve()
     config: ConfigData = {
         "excel_path": str((config_dir / config_raw["excel_path"]).resolve()),
         "xml_directory": str((config_dir / config_raw["xml_directory"]).resolve()),
@@ -60,9 +62,9 @@ def check_config_data() -> ConfigData:
     # Validate files exist.
     try:
         if not Path(config["excel_path"]).exists():
-            raise FileNotFoundError(f"ERROR: Excel file not found at {config['excel_path']}")
+            raise FileNotFoundError(f"Excel file not found at {config['excel_path']}")
         if not Path(config["xml_directory"]).exists():
-            raise FileNotFoundError(f"ERROR: Excel directory not found at {config['xml_directory']}")
+            raise FileNotFoundError(f"Excel directory not found at {config['xml_directory']}")
     except FileNotFoundError as e:
         print(f"ERROR: {e}")
         raise SystemExit from e

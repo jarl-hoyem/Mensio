@@ -3,8 +3,8 @@
 Convert XML files to rows in an Excel file.
 """
 
-from modules.config import ConfigData, get_xml_files, check_config_data
-from modules.excel_writer import ExcelWriter
+from mensio.modules.config import ConfigData, get_xml_files, check_config_data
+from mensio.modules.excel_writer import ExcelWriter
 
 
 if __name__ == "__main__":

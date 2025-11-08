@@ -1,6 +1,5 @@
 """Excel writer."""
 
-from typing import cast
 from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import PatternFill
 
@@ -45,11 +44,10 @@ class ExcelWriter:
                 _mapping: Excel column number mapped to XLM tags.
                 _excel_headings: Excel column headings.
         """
-        self._file_path: str = cast(str, config_data["excel_path"])
-        # pylint: disable=too-many-try-statements
+        self._file_path: str = config_data["excel_path"]
         try:
             self._workbook = load_workbook(self._file_path)
-            self._sheet = self._workbook[cast(str, config_data["sheet_title"])]
+            self._sheet = self._workbook[config_data["sheet_title"]]
         except FileNotFoundError as e:
             print(f"ERROR: File {self._file_path} not found.")
             raise SystemExit from e
@@ -59,11 +57,10 @@ class ExcelWriter:
 
         self._row: list[str] = [""] * 32
         self._row_number: int = 0
-        # pylint: disable=too-many-try-statements
         try:
             # Maps Excel column number to XML tags
-            self._mapping: dict[int, str] = cast(dict[int, str], config_data["mapping"])
-            self._excel_headings: list[str] = cast(list[str], config_data["excel_headings"])
+            self._mapping: dict[int, str] = config_data["mapping"]
+            self._excel_headings: list[str] = config_data["excel_headings"]
         except KeyError as e:
             print("ERROR: Missing key (mapping or excel_headings) in config.yaml. Stopping without any action taken.")
             raise SystemExit from e
@@ -94,7 +91,6 @@ class ExcelWriter:
         Avoids wrong writes if a column was added or removed.
         :return: True if the columns are as expected, False otherwise.
         """
-        # pylint: disable=consider-using-any-or-all
         for index, column in enumerate(self._mapping):
             if self._sheet.cell(row=1, column=column).value != self._excel_headings[index]:
                 return False
@@ -118,7 +114,7 @@ class ExcelWriter:
     def _update_cell(self, column: int, value: str, formatting: str) -> None:
         """Update one cell in the row with the right formatting.
 
-        Formatting documentation:
+        Formatting docs:
         https://pythoninoffice.com/python-excel-number-format/
         :param: column: Column number to write to.
                 value: Value to write to the cell.
@@ -133,7 +129,6 @@ class ExcelWriter:
             start_color=color, end_color=color, fill_type="solid"
         )
 
-    # pylint: disable=too-complex
     def update_row(self, xml_file_path: str) -> None:
         """Update a row in the Excel file with data from the XML file.
 
@@ -148,7 +143,7 @@ class ExcelWriter:
                     format_parameter: str = "General"  # For strings
                     if column == ExcelWriter.RR_INTERVAl_COLUMN:
                         # Overwrite the value. Then it can be formatted correctly.
-                        value = self._get_rr_interval()  # pylint: disable=redefined-loop-name.
+                        value = self._get_rr_interval()
                     if is_number(value):
                         match column:
                             case ExcelWriter.RR_INTERVAl_COLUMN:  # Percentage.
