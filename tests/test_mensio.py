@@ -1,7 +1,7 @@
-"""High level tests."""
+"""Run the high-level tests."""
 
-from mensio.modules.config import ConfigData, check_config_data, get_xml_files
-from mensio.modules.excel_writer import ExcelWriter
+from mensio.modules.config import ConfigData, check_config_data, get_xml_files  # type: ignore[import-not-found]
+from mensio.modules.excel_writer import ExcelWriter  # type: ignore[import-not-found]
 
 
 def test_mensio() -> None:

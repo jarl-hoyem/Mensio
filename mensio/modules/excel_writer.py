@@ -176,6 +176,3 @@ class ExcelWriter:
 
         self._reset_row()
 
-
-if __name__ == "__main__":
-    pass

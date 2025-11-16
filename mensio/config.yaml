@@ -5,7 +5,7 @@ excel_path: ../data/2025-09_24_Patient_Measurements_VX.xlsx
 
 sheet_title: tavi_mock_1000_with_G  # Name of tab to write in.
 
-# Path to the directory with XML files relative to config.yaml location (src/).
+# Path to the directory with XML files relative to the config.yaml location (src/).
 xml_directory: ../data/Datenaus3Mensio/
 
 # The mapping of Excel column numbers to XML tags.

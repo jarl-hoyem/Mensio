@@ -14,7 +14,7 @@ CONFIG_FILE = REPO_ROOT / "config.yaml"
 
 
 class ConfigData(TypedDict):
-    """Type definition for the configuration yaml structure."""
+    """Type definition for the configuration YAML structure."""
 
     excel_path: str
     xml_directory: str

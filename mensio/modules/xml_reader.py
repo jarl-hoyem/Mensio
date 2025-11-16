@@ -84,9 +84,3 @@ class XMLReader:
                     if value is not None:
                         return_value[cast(str, measurement_id)] = cast(str, reportable_value.get("Value"))
         return return_value
-
-
-if __name__ == "__main__":
-    # Call to satisfy pylint.
-    xml_reader = XMLReader("path", ["tags"])
-    print(xml_reader.get_path())
