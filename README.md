@@ -1,3 +1,7 @@
+Mensio automates data extraction from Mensio cardiac measurement device XML files into
+Excel spreadsheets, saving time and reducing manual errors for medical researchers.
+
+
 1. Save the folder src on your computer.
 
 2. Install Python from:

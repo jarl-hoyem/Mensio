@@ -1,10 +1,12 @@
 """Excel writer."""
 
-from typing import cast
+__all__ = ["ExcelWriter"]
+
 from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import PatternFill
 
 from .xml_reader import XMLReader
+from .config import ConfigData
 
 
 def is_number(s: str) -> bool:
@@ -32,7 +34,7 @@ class ExcelWriter:
     FLOAT_COLUMNS: set[int] = {8, 9, 10, 11, 12, 17, 18, 19}
     INTEGER_COLUMNS: set[int] = {21, 22, 23, 24, 31}
 
-    def __init__(self, config_data: dict[str, str | dict[int, str] | list[str]]) -> None:
+    def __init__(self, config_data: ConfigData) -> None:
         """Initialize the object.
 
         :param: config_data: Dictionary with configuration data.
@@ -44,11 +46,10 @@ class ExcelWriter:
                 _mapping: Excel column number mapped to XLM tags.
                 _excel_headings: Excel column headings.
         """
-        self._file_path: str = cast(str, config_data["excel_path"])
-        # pylint: disable=too-many-try-statements
+        self._file_path: str = config_data["excel_path"]
         try:
             self._workbook = load_workbook(self._file_path)
-            self._sheet = self._workbook[cast(str, config_data["sheet_title"])]
+            self._sheet = self._workbook[config_data["sheet_title"]]
         except FileNotFoundError as e:
             print(f"ERROR: File {self._file_path} not found.")
             raise SystemExit from e
@@ -58,14 +59,8 @@ class ExcelWriter:
 
         self._row: list[str] = [""] * 32
         self._row_number: int = 0
-        # pylint: disable=too-many-try-statements
-        try:
-            # Maps Excel column number to XML tags
-            self._mapping: dict[int, str] = cast(dict[int, str], config_data["mapping"])
-            self._excel_headings: list[str] = cast(list[str], config_data["excel_headings"])
-        except KeyError as e:
-            print("ERROR: Missing key (mapping or excel_headings) in config.yaml. Stopping without any action taken.")
-            raise SystemExit from e
+        self._mapping: dict[int, str] = config_data["mapping"]
+        self._excel_headings: list[str] = config_data["excel_headings"]
 
     def _reset_row(self) -> None:
         """Reset row to write, after writing."""
@@ -93,7 +88,7 @@ class ExcelWriter:
         Avoids wrong writes if a column was added or removed.
         :return: True if the columns are as expected, False otherwise.
         """
-        # pylint: disable=consider-using-any-or-all
+        # pylint: disable=consider-using-any-or-all.
         for index, column in enumerate(self._mapping):
             if self._sheet.cell(row=1, column=column).value != self._excel_headings[index]:
                 return False
@@ -117,7 +112,7 @@ class ExcelWriter:
     def _update_cell(self, column: int, value: str, formatting: str) -> None:
         """Update one cell in the row with the right formatting.
 
-        Formatting documentation:
+        Formatting docs:
         https://pythoninoffice.com/python-excel-number-format/
         :param: column: Column number to write to.
                 value: Value to write to the cell.
@@ -132,43 +127,52 @@ class ExcelWriter:
             start_color=color, end_color=color, fill_type="solid"
         )
 
-    # pylint: disable=too-complex
+    def _save_workbook(self) -> None:
+        """Save the workbook to the Excel file."""
+        try:
+            self._workbook.save(self._file_path)
+        except PermissionError as exc:
+            print(f"ERROR: Permission denied for {self._file_path}. Is the Excel file open? Please close it.")
+            raise SystemExit from exc
+
+    def _determine_cell_format(self, column: int, value: str) -> str:
+        """Determine the formatting for a cell."""
+        # Check if the value is a number first.
+        if not is_number(value):
+            return "General"  # For strings, including 'missing' or 'UNPLAUSIBLE'.
+
+        match column:
+            case self.RR_INTERVAl_COLUMN:  # Formats as a percentage, when a valid number.
+                return "0%"
+            case col if col in self.FLOAT_COLUMNS:  # Floats with 1 decimal.
+                return "0.0"
+            case col if col in self.INTEGER_COLUMNS:  # Integers.
+                return "0"
+            case _:
+                return "General"
+
     def update_row(self, xml_file_path: str) -> None:
         """Update a row in the Excel file with data from the XML file.
 
         :param: xml_file_path: XML path for which to update the row in Excel.
         """
         self._build_row(xml_file_path)
-        if self._row_number not in [0, 1]:  # Update the row.
-            for index, value in enumerate(self._row):
-                column = index + 1  # Excel starts counting at 1
-                # Only write if the cell is empty and there is a value to write.
-                if not self._sheet.cell(column=column, row=self._row_number).value and value != "":
-                    format_parameter: str = "General"  # For strings
-                    if column == ExcelWriter.RR_INTERVAl_COLUMN:
-                        # Overwrite the value. Then it can be formatted correctly.
-                        value = self._get_rr_interval()  # pylint: disable=redefined-loop-name.
-                    if is_number(value):
-                        match column:
-                            case ExcelWriter.RR_INTERVAl_COLUMN:  # Percentage.
-                                format_parameter = "0%"
-                            case col if col in ExcelWriter.FLOAT_COLUMNS:  # Floats with 1 decimal.
-                                format_parameter = "0.0"
-                            case col if col in ExcelWriter.INTEGER_COLUMNS:  # Integers.
-                                format_parameter = "0"
-                    self._update_cell(column, value, format_parameter)
-            try:
-                self._workbook.save(self._file_path)
-            except PermissionError as exc:
-                print(f"ERROR: Permission denied for {self._file_path}. Is the Excel file open? Please close it.")
-                raise SystemExit from exc
-        else:  # The Patient ID was not found in the Excel file.
+        if self._row_number in {0, 1}:  # The Patient ID was not found in the Excel file.
             print(
                 f"WARNING: Patient ID {self._row[1]} from XML file {xml_file_path} was not found in "
                 + f"Excel file {self._file_path}."
             )
+        else:  # Update the row.
+            for index, value in enumerate(self._row):
+                column = index + 1  # Excel starts counting at 1
+                # Only write if the cell is empty and there is a value to write.
+                if not self._sheet.cell(column=column, row=self._row_number).value and value != "":
+                    if column == self.RR_INTERVAl_COLUMN:
+                        # Intentionally overwrite the value. Then it can be formatted correctly.
+                        value = self._get_rr_interval()  # pylint: disable=redefined-loop-name.
+                    formatting: str = self._determine_cell_format(column, value)
+                    self._update_cell(column, value, formatting)
+            self._save_workbook()
+
         self._reset_row()
 
-
-if __name__ == "__main__":
-    pass

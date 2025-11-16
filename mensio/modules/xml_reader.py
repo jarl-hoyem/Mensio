@@ -2,7 +2,7 @@
 
 from typing import cast
 from bs4 import BeautifulSoup
-from bs4.element import Tag, PageElement, AttributeValueList, ResultSet, NavigableString
+from bs4.element import Tag, AttributeValueList, ResultSet
 
 
 class XMLReader:
@@ -34,7 +34,6 @@ class XMLReader:
 
     def _read_file(self) -> None:
         """Read and parse the data inside the XML file with BeautifulSoup."""
-        # pylint: disable=too-many-try-statements
         try:
             with open(self._file_path, encoding="utf-8") as f:
                 xml_data: str = f.read()
@@ -68,21 +67,20 @@ class XMLReader:
 
         # Find all wanted measurement tags.
         wanted_measurements: list[str] = [m for m in self._tags if m not in non_measurements]
-        measurements: ResultSet[PageElement | Tag | NavigableString] = self._soup.find_all("Measurement")
+        # PyCharm needs the cast, mypy does not.
+        measurements: ResultSet[Tag] = cast(  # type: ignore[redundant-cast]
+            ResultSet[Tag], self._soup.find_all("Measurement")
+        )
 
         # Collect wanted measurement IDs and their values.
         for measurement in measurements:
-            measurement_id: str | AttributeValueList | None = cast(Tag, measurement).get("Id")
+            measurement_id: str | AttributeValueList | None = measurement.get("Id")
             if measurement_id is not None and measurement_id in wanted_measurements:
-                reportable_value: Tag | None = cast(Tag, cast(Tag, measurement).find("ReportableValue"))
+                # PyCharm needs the cast, mypy does not.
+                reportable_value: Tag | None = \
+                    cast(Tag | None, measurement.find("ReportableValue"))  # type: ignore[redundant-cast]
                 if reportable_value:
                     value: str | AttributeValueList | None = reportable_value.get("Value")
                     if value is not None:
                         return_value[cast(str, measurement_id)] = cast(str, reportable_value.get("Value"))
         return return_value
-
-
-if __name__ == "__main__":
-    # Call to satisfy pylint.
-    xml_reader = XMLReader("path", ["tags"])
-    print(xml_reader.get_path())

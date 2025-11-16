@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mensio"
+version = "1.0.0"
+description = "Convert XML to Excel"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+mensio = ["config.yaml"]
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".venv", "build", "dist"]
+
+[tool.pylint.master]
+init-hook = "import sys, os; sys.path.insert(0, os.path.abspath('.'))"
+fail-on = "I"
+load-plugins = [
+    "pylint.extensions.bad_builtin",
+    "pylint.extensions.broad_try_clause",
+    "pylint.extensions.check_elif",
+    "pylint.extensions.code_style",
+    "pylint.extensions.comparison_placement",
+    "pylint.extensions.confusing_elif",
+    "pylint.extensions.consider_refactoring_into_while_condition",
+    "pylint.extensions.consider_ternary_expression",
+    "pylint.extensions.dict_init_mutate",
+    "pylint.extensions.docparams",
+    "pylint.extensions.docstyle",
+    "pylint.extensions.dunder",
+    "pylint.extensions.eq_without_hash",
+    "pylint.extensions.empty_comment",
+    "pylint.extensions.for_any_all",
+    "pylint.extensions.magic_value",
+    "pylint.extensions.mccabe",
+    "pylint.extensions.no_self_use",
+    "pylint.extensions.overlapping_exceptions",
+    "pylint.extensions.private_import",
+    "pylint.extensions.redefined_loop_name",
+    "pylint.extensions.redefined_variable_type",
+    "pylint.extensions.set_membership",
+    "pylint.extensions.typing",
+    "pylint.extensions.while_used",
+]
+
+[tool.pylint.messages_control]
+enable = [
+    "bad-inline-option",
+    "deprecated-pragma",
+    "file-ignored",
+    "use-symbolic-message-instead",
+    "useless-suppression",
+]
+
+disable = ["consider-using-assignment-expr"]
+
+[tool.pylint.format]
+max-line-length = 120
+max-try-statements = 2
+
+[tool.pylint.strings]
+check-quote-consistency = true
+
+[tool.pylint.variables]
+allow-global-unused-variables = false
+include-naming-hint = true
+
+[tool.pylint.generated-members]
+generated-members = "cv2"
+
+[tool.mypy]
+explicit_package_bases = true
+strict = true
+exclude = ["tests"]
+warn_unused_configs = true
+python_version = "3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+python_files = ["test_*.py"]
