@@ -3,9 +3,8 @@
 Convert XML files to rows in an Excel file.
 """
 
-from sources.modules.config import ConfigData, get_xml_files, check_config_data
-from sources.modules.excel_writer import ExcelWriter
-
+from .modules.config import ConfigData, get_xml_files, check_config_data
+from .modules.excel_writer import ExcelWriter
 
 if __name__ == "__main__":
     config_data: ConfigData = check_config_data()

@@ -59,7 +59,7 @@ def check_config_data() -> ConfigData:
         raise KeyError("ERROR: Missing required keys in config.yaml:", ". ".join(missing_keys))
 
     # Resolve paths to absolute.
-    config_dir = Path(str(files("sources"))).resolve()
+    config_dir = Path(str(files("mensio"))).resolve()
     config: ConfigData = {
         "excel_path": str((config_dir / config_raw["excel_path"]).resolve()),
         "xml_directory": str((config_dir / config_raw["xml_directory"]).resolve()),

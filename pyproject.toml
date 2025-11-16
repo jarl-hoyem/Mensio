@@ -6,12 +6,17 @@ build-backend = "setuptools.build_meta"
 name = "mensio"
 version = "1.0.0"
 description = "Convert XML to Excel"
+dependencies = []
 
 [tool.setuptools.packages.find]
 where = ["."]
 
 [tool.setuptools.package-data]
 mensio = ["config.yaml"]
+
+[tool.flake8]
+max-line-length = 120
+exclude = [".venv", "build", "dist"]
 
 [tool.pylint.master]
 init-hook = "import sys, os; sys.path.insert(0, os.path.abspath('.'))"
@@ -50,7 +55,9 @@ enable = [
     "deprecated-pragma",
     "file-ignored",
     "use-symbolic-message-instead",
-    "useless-suppression"]
+    "useless-suppression",
+]
+
 disable = ["consider-using-assignment-expr"]
 
 [tool.pylint.format]
@@ -68,10 +75,11 @@ include-naming-hint = true
 generated-members = "cv2"
 
 [tool.mypy]
-mypy_path = "sources"
 explicit_package_bases = true
 strict = true
-exclude = ["test"]
+exclude = ["tests"]
+warn_unused_configs = true
+python_version = "3.13"
 
 [tool.pytest.ini_options]
 testpaths = ["test"]
